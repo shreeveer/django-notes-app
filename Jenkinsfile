@@ -1,4 +1,3 @@
-@Library("Shared") _
 pipeline{
     
     agent { label "slave"}
@@ -15,7 +14,7 @@ pipeline{
         stage("Code"){
             steps{
                script{
-                clone("https://github.com/LondheShubham153/django-notes-app.git","main")
+                clone("https://github.com/shreeveer/django-notes-app","main")
                }
                 
             }
@@ -23,14 +22,14 @@ pipeline{
         stage("Build"){
             steps{
                 script{
-                docker_build("notes-app","latest","trainwithshubham")
+                docker_build("notes-app","latest","shreeveer")
                 }
             }
         }
         stage("Push to DockerHub"){
             steps{
                 script{
-                    docker_push("notes-app","latest","trainwithshubham")
+                    docker_push("notes-app","latest","shreeveer")
                 }
             }
         }
